@@ -1,0 +1,19 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style-type: none;
+    font-family: 'Roboto', sans-serif;
+}
+
+.avatar {
+    width: 100%;
+    height: auto;
+    padding: 1em;
+}
+
+p {
+    margin: 0 0 0 1rem !important;
+    letter-spacing: 0.02em;
+}
+
