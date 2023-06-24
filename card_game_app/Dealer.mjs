@@ -6,7 +6,7 @@ class Dealer {
     let table = {
       players: [],
       gameMode: gameMode,
-      deck: new Deck(),
+      deck: new Deck(gameMode),
     };
 
     table["deck"].shuffle();
@@ -25,6 +25,7 @@ class Dealer {
   static initialCards(gameMode) {
     if (gameMode == "poker") return 5;
     if (gameMode == "21") return 2;
+    if (gameMode == "Pair of Cards") return 5;
   }
 
   static printTableInfo(table) {
@@ -69,9 +70,46 @@ class Dealer {
       return "player " + (winnerIndex + 1) + " is the winner";
     else return "No winners..";
   }
+
+  static checkWinner(table) {
+    if (table["gameMode"] == "21") return Dealer.winnerOf21(table);
+    return "NO GAME";
+  }
+
+  static winnerPairOfCards(table) {
+
+    const cardPower = [1, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2];
+
+    let numbers1 = HelperFunction.generateNumberArr(table["players"][0]);
+    let numbers2 = HelperFunction.generateNumberArr(table["players"][1]);
+
+    let hashmap1 = HelperFunction.createHashmap(cardPower, numbers1);
+    let hashmap2 = HelperFunction.createHashmap(cardPower, numbers2);
+
+    let winner = "draw.";
+    let pairOfCards = 0;
+
+    for (let i = 0; i < cardPower.length; i++) {
+
+      if (hashmap1[cardPower[i]] > hashmap2[cardPower[i]]) {
+
+        if (pairOfCards < hashmap1[cardPower[i]]) {
+
+          pairOfCards = hashmap1[cardPower[i]];
+          winner = "player 1.";
+        }
+      } else if (hashmap1[cardPower[i]] < hashmap2[cardPower[i]]) {
+        if (pairOfCards < hashmap2[cardPower[i]]) {
+          pairOfCards = hashmap2[cardPower[i]];
+          winner = "player 2.";
+        }
+      }
+    }
+    console.log("The winner of this game is ");
+    return winner;
+  }
 }
 
-let table = Dealer.startGame(4, "21");
-
-Dealer.printTableInfo(table);
-console.log(Dealer.winnerOf21(table));
+let table1 = Dealer.startGame(2, "Pair of Cards");
+Dealer.printTableInfo(table1);
+console.log(Dealer.winnerPairOfCards(table1));

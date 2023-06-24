@@ -1,11 +1,11 @@
 import Card from "./Card.mjs";
 
 class Deck {
-  constructor() {
-    this.deck = Deck.generateDeck();
+  constructor(gameMode = null) {
+    this.deck = Deck.generateDeck(gameMode);
   }
 
-  static generateDeck() {
+  static generateDeck(gameMode = null) {
     let newDeck = [];
     const suits = ["♣", "♦", "♥", "♠"];
     const values = [
@@ -24,8 +24,17 @@ class Deck {
       "K",
     ];
 
+    const blackJack = { A: 1, J: 10, Q: 10, K: 10 };
+
     for (let i = 0; i < suits.length; i++) {
       for (let j = 0; j < values.length; j++) {
+        let currentValue = values[j];
+        let intValue =
+          gameMode === "21"
+            ? currentValue in blackJack
+              ? blackJack[currentValue]
+              : parseInt(currentValue)
+            : j + 1;
         newDeck.push(new Card(suits[i], values[j], j + 1));
       }
     }
@@ -51,5 +60,4 @@ class Deck {
   }
 }
 
-export default Deck
-
+export default Deck;
