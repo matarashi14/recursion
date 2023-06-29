@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Bootstrap demo</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script
+      src="https://kit.fontawesome.com/44c0c30cfb.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <div class="m-2">
+      <div class="col-6 row justify-content-end mb-2">
+        <label for="operator1">Operand 1 - </label>
+        <!-- inputタグにvalue属性が初期値として表示されます。 -->
+        <!-- value属性の中はstr型です。 -->
+        <input type="text" id="operator1" value="2" />
+
+        <label for="operator2">Operand 2 -</label>
+        <input type="text" id="operator2" value="6" />
+
+        <!-- inputタグのvalue属性は、要素.valueプロパティで取得することができます。 -->
+        <!-- onclick属性でクリック時に実行されるステートメントを設定します。 -->
+        <button
+          class="ml-1"
+          onclick="alert(`Op1: ` + document.getElementById('operator1').value + `, Op2: ` + document.getElementById('operator2').value)"
+        >
+          Test Input
+        </button>
+      </div>
+
+      <div class="col-6 row justify-content-end">
+        <label for="answer">Total</label>
+        <!-- disable属性でinput属性を無効にします。 -->
+        <input type="text" id="answer" disabled />
+        <div class="ml-1">
+          <button id="plusOperator" class="operator-btn">+</button>
+          <button id="minusOperator" class="operator-btn">-</button>
+          <button id="timesOperator" class="operator-btn">*</button>
+          <button id="divideOperator" class="operator-btn">/</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JavaScript files -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="index.js"></script>
+  </body>
+</html>
